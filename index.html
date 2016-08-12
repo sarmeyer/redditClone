@@ -11,6 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-animate.min.js'></script>
         <script type="text/javascript" src='script.js'></script>
     </head>
     <body ng-controller="MainController">
@@ -33,14 +34,6 @@
                                 <span class="sr-only">(current)</span>
                               </a>
                         </li>
-                        <!-- <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li><a ng-click="sortType = 'date'">Date</a></li>
-                            <li><a ng-click="sortType = 'votes'">Votes</a></li>
-                            <li><a ng-click="sortType = 'title'">Title</a></li>
-                          </ul>
-                        </li> -->
                     </ul>
                     <select class="select-location" ng-model='sort'>
                         <option value=''>Sort By</option>
@@ -93,46 +86,38 @@
                 </form>
             </div>
         </nav>
-        <div class="row well" ng-repeat='post in posts | filter: searchKeyword | orderBy:sort'>
+        <div class="posts row well well-sm" ng-repeat='post in posts | filter: searchKeyword | orderBy:sort'>
             <div class="row image col-md-12">
                 <img class='postImage' src="{{post.imgurl}}" alt="You'll have to see this place in person!"/>
-                <div class="title col-md-8">
+                <div class="title col-md-6">
                     {{post.title}}
                     |
                     <img class='arrow' ng-click='post.votes=post.votes+1' src="arrows.png" alt="UpVote"/>
                     <img class='arrow' ng-click='post.votes=post.votes-1' src="arrows-1.png" alt="DownVote"/>
                     <span ng-class="post.votes >= 0 ? 'green' : 'red'">{{post.votes}}</span>
-                    <h5>By
-                        {{post.author}}</h5>
+                    <h4>By
+                        {{post.author}}</h4>
                     <article>{{post.description}}</article>
                 </div>
             </div>
-            <div class="row dateComments col-md-12">
-                <div class="col-md-2">
-                    <div class='date fa fa-calendar' aria-hidden='true'>
+            <div class="row dateComments">
+                    <div class='col-md-4 date fa fa-calendar' aria-hidden='true'>
                       {{post.date | amCalendar}}
                     </div>
-                </div>
-            </div>
-            <div class='row col-md-12' ng-click='showComments()'>
-                <div class="col-md-3 fa fa-comment">
+            <div ng-click='showComments()'>
+                <div class="col-md-4 fa fa-comment">
                     <ng-pluralize count='post.comments.length' when="{'0': '{} Comments',
                   'one': '1 Comment',
                   'other': '{} Comments'}"></ng-pluralize>
                 </div>
             </div>
-            <div class='row col-md-12' ng-show='commentsShowing' ng-repeat='comment in post.comments'>
-                <div class="col-md-3">
-                    {{comment.commentAuthor}}
-                    says
-                    {{comment.thoughts}}
-                </div>
-            </div>
-            <div class='row col-md-12'>
-                <div class="col-md-3 fa fa-pencil" ng-click='showCommentForm()'>
+                <div class="col-md-4 fa fa-pencil" ng-click='showCommentForm()'>
                     Add Comment
                 </div>
+              </div>
                 <div class='row commentForm' name='commentForm' ng-show='commentFormShowing'>
+                  <div class="col-md-12">
+
                     <form name='newComment' ng-submit="submitComment(post)">
                         <label>Author</label>
                         <input type="text" name="commentAuthor" ng-model='commentText.commentAuthor' placeholder="Your name">
@@ -140,9 +125,12 @@
                         <input type="text" name="thoughts" ng-model='commentText.thoughts'>
                         <input type="submit" value="Add Comment" class='btn btn-success'>
                     </form>
+                  </div>
+                  </div>
+                <div class='row commentsShowing' ng-show='commentsShowing' ng-repeat='comment in post.comments'>
+                        From {{comment.commentAuthor}}: {{comment.thoughts}}
                 </div>
             </div>
-
-        </div>
+          </div>
     </body>
 </html>

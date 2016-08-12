@@ -1,10 +1,14 @@
 body {
   font-family: 'Raleway', sans-serif;
 }
+.row {
+  padding-left: 325px;
+}
 .postImage {
   width: 250px;
   height: 250px;
   float: left;
+  margin-left: 50px;
 }
 input.ng-invalid {
   border: 1px solid red;
@@ -17,4 +21,34 @@ input.ng-valid {
 }
 .green {
   color: green;
+}
+.well {
+  font-size: 1.5em;
+}
+.title {
+  font-size: 1.8em;
+}
+article {
+  font-size: .5em;
+}
+.commentsShowing {
+  font-size: .8em;
+}
+.ng-enter {
+  transition:0.4s ease all;
+  opacity:0;
+}
+.ng-enter.ng-enter-active {
+  opacity:1;
+}
+.ng-leave {
+  transition:0.4s ease all;
+  opacity:1;
+}
+.ng-leave.ng-leave-active {
+  opacity:0;
+}
+.ng-enter-stagger, .ng-leave-stagger {
+  transition-delay: 0.2s;
+  transition-duration:0;
 }
