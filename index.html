@@ -8,6 +8,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <script type="text/javascript" src='script.js'></script>
     </head>
     <body ng-controller="MainController">
@@ -29,14 +30,15 @@
                                 + Submit Post</a>
                         </li>
                     </ul>
-                    <select class="selectpicker" name="sort">
+                    <select class="select-location" ng-model='sort'>
+                        <option value=''>Sort By</option>
                         <option value='date'>Date</option>
                         <option value='votes'>Votes</option>
                         <option value='title'>Title</option>
                     </select>
                     <form class="navbar-form navbar-left">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search" ng-model='searchKeword'>
+                            <input type="text" class="form-control" placeholder="Search" ng-model='searchKeyword'>
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
@@ -79,14 +81,14 @@
                 </form>
             </div>
         </nav>
-        <div class="userPosts" ng-repeat='post in posts | filter: searchKeword | orderBy: sort'>
+        <div class="userPosts well" ng-repeat='post in posts | filter: searchKeyword | orderBy: sort'>
             <img class='postImage' src="{{post.imgurl}}" alt="You'll have to see this place in person!"/>
-            <h2>{{post.title}} |
+            <h2>{{post.title}}
+                |
                 <img class='arrow' ng-click='post.votes=post.votes+1' src="arrows.png" alt="UpVote"/>
                 <img class='arrow' ng-click='post.votes=post.votes-1' src="arrows-1.png" alt="DownVote"/>
-                {{post.votes}}</h2>
-            <h5>Explored by
-                {{post.author}}</h5>
+                <span ng-class="post.votes >= 0 ? 'green' : 'red'">{{post.votes}}</span></h2>
+            <h5>By {{post.author}}</h5>
             <h4>{{post.description}}</h4>
             <p class='date'>
                 {{post.date | amCalendar}}
@@ -97,19 +99,19 @@
                      'other': '{} Comments'}"></ng-pluralize>
             </p>
             <div class="comments" ng-show='comments' ng-repeat='comment in post.comments'>
-                {{comment.author}}
+                {{comment.commentAuthor}}
                 says
                 {{comment.thoughts}}
             </div>
             <p ng-click='showCommentForm()'>Add Comment</p>
             <div name='commentForm' ng-show='commentForm'>
-              <form ng-submit="submitComment()" name='addComment'>
-                <label>Author</label>
-                <input type="text" name="commentAuthor" ng-model='view.comments.commentAuthor' placeholder="Your name">
-                <label>Your thoughts</label>
-                <input type="text" name="thoughts" ng-model='view.comments.thoughts'>
-                <input type="submit" value="Add Comment" class='btn btn-success'>
-              </form>
+                <form ng-submit="submitComment(post)">
+                    <label>Author</label>
+                    <input type="text" name="commentAuthor" ng-model='commentText.commentAuthor' placeholder="Your name">
+                    <label>Your thoughts</label>
+                    <input type="text" name="thoughts" ng-model='commentText.thoughts'>
+                    <input type="submit" value="Add Comment" class='btn btn-success'>
+                </form>
             </div>
         </div>
     </body>

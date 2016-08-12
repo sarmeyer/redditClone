@@ -2,6 +2,7 @@ var app = angular.module("reddit", ['angularMoment']);
 
 app.controller('MainController', function($scope) {
     $scope.view = {};
+    $scope.commentText = {};
     $scope.add = false;
     $scope.showAdd = function() {
         if ($scope.add === true) {
@@ -28,7 +29,7 @@ app.controller('MainController', function($scope) {
         }
     }
     $scope.posts = [{
-        title: 'Arches--!',
+        title: 'Arches',
         author: 'Sarah',
         imgurl: 'https://upload.wikimedia.org/wikipedia/commons/0/06/Delicatearch1.jpg',
         description: 'This site features more than 2,000 natural sandstone arches, including the famous Delicate Arch. In a desert climate, millions of years of erosion have led to these structures, and the arid ground has life-sustaining soil crust and potholes, which serve as natural water-collecting basins. Other geologic formations are stone columns, spires, fins, and towers.',
@@ -36,7 +37,7 @@ app.controller('MainController', function($scope) {
         date: new Date(),
         comments: [{
             thoughts: 'Too pretty',
-            author: 'Sarah'
+            commentAuthor: 'Sarah'
         }]
     }, {
         title: 'Canyonlands',
@@ -47,10 +48,10 @@ app.controller('MainController', function($scope) {
         votes: 1,
         comments: [{
             thoughts: 'One of the best places ever!',
-            author: 'Sarah'
+            commentAuthor: 'Sarah'
         }, {
             thoughts: 'A long drive but so worth it',
-            author: 'Mike'
+            commentAuthor: 'Mike'
         }]
     }, {
         title: 'Crater Lake',
@@ -76,10 +77,7 @@ app.controller('MainController', function($scope) {
       $scope.posts.push($scope.view);
     };
 
-    $scope.submitComment = function() {
-        $scope.posts.comments.push({
-            thoughts: $scope.thoughts,
-            author: $scope.commentAuthor
-        })
+    $scope.submitComment = function(postObj) {
+      postObj.comments.push($scope.commentText)
     }
 });
