@@ -45,7 +45,6 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search" ng-model='searchKeyword'>
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -92,8 +91,8 @@
                 <div class="title col-md-6">
                     {{post.title}}
                     |
-                    <img class='arrow' ng-click='post.votes=post.votes+1' src="arrows.png" alt="UpVote"/>
-                    <img class='arrow' ng-click='post.votes=post.votes-1' src="arrows-1.png" alt="DownVote"/>
+                    <img class='arrowup' ng-click='post.votes=post.votes+1' src="arrows.png" alt="UpVote"/>
+                    <img class='arrowdown' ng-click='post.votes=post.votes-1' src="arrows-1.png" alt="DownVote"/>
                     <span ng-class="post.votes >= 0 ? 'green' : 'red'">{{post.votes}}</span>
                     <h4>By
                         {{post.author}}</h4>
@@ -101,23 +100,22 @@
                 </div>
             </div>
             <div class="row dateComments">
-                    <div class='col-md-4 date fa fa-calendar' aria-hidden='true'>
+                    <div class='col-md-4 date fa fa-calendar dateShow' aria-hidden='true'>
                       {{post.date | amCalendar}}
                     </div>
             <div ng-click='showComments()'>
-                <div class="col-md-4 fa fa-comment">
+                <div class="col-md-4 fa fa-comment commentShow">
                     <ng-pluralize count='post.comments.length' when="{'0': '{} Comments',
                   'one': '1 Comment',
                   'other': '{} Comments'}"></ng-pluralize>
                 </div>
             </div>
-                <div class="col-md-4 fa fa-pencil" ng-click='showCommentForm()'>
+                <div class="col-md-4 fa fa-pencil commentAdd" ng-click='showCommentForm()'>
                     Add Comment
                 </div>
               </div>
                 <div class='row commentForm' name='commentForm' ng-show='commentFormShowing'>
                   <div class="col-md-12">
-
                     <form name='newComment' ng-submit="submitComment(post)">
                         <label>Author</label>
                         <input type="text" name="commentAuthor" ng-model='commentText.commentAuthor' placeholder="Your name">

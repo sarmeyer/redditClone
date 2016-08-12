@@ -34,8 +34,26 @@ article {
 .commentsShowing {
   font-size: .8em;
 }
+.arrowup:hover {
+    border: solid 2px green;
+    border-radius: 50%;
+}
+.arrowdown:hover {
+    border: solid 2px red;
+    border-radius: 50%;
+}
+.commentShow:hover {
+  color: purple;
+}
+.commentAdd:hover {
+  color: purple;
+}
+.dateShow:hover {
+  color: purple;
+}
+/*animations*/
 .ng-enter {
-  transition:0.4s ease all;
+  transition:0.3s ease all;
   opacity:0;
 }
 .ng-enter.ng-enter-active {
@@ -48,7 +66,17 @@ article {
 .ng-leave.ng-leave-active {
   opacity:0;
 }
-.ng-enter-stagger, .ng-leave-stagger {
-  transition-delay: 0.2s;
-  transition-duration:0;
+/*.ng-hide-add {
+  transition:0.5s linear all;
+  opacity:1;
 }
+.ng-hide {
+  transition:0.5s linear all;
+  opacity:0;
+}
+.ng-hide-remove-active {
+  opacity: 0;
+}
+.ng-hide-add-active {
+  opacity: 1;
+}*/

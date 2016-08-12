@@ -1,9 +1,4 @@
-var app = angular.module("reddit", ['angularMoment']);
-
-    // $(document).ready(function () {
-    //     $('.dropdown-toggle').dropdown();
-    // });
-
+var app = angular.module("reddit", ['angularMoment', 'ngAnimate']);
 
 app.controller('MainController', function($scope) {
     $scope.view = {};
@@ -72,5 +67,6 @@ app.controller('MainController', function($scope) {
 
     $scope.submitComment = function(postObj) {
         postObj.comments.push($scope.commentText);
+        $scope.commentText = {};
     }
 });
