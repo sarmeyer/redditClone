@@ -4,6 +4,7 @@ body {
 .postImage {
   width: 250px;
   height: 250px;
+  float: left;
 }
 input.ng-invalid {
   border: 1px solid red;

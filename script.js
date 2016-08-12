@@ -9,7 +9,6 @@ app.controller('MainController', function($scope) {
     $scope.view = {};
     $scope.commentText = {};
     $scope.sort = '-votes';
-    // $scope.sortReverse  = true;
     $scope.add = false;
     $scope.showAdd = function() {
         $scope.add = !$scope.add
