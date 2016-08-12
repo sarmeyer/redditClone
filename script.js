@@ -1,17 +1,19 @@
 var app = angular.module("reddit", ['angularMoment']);
 
+    // $(document).ready(function () {
+    //     $('.dropdown-toggle').dropdown();
+    // });
+
+
 app.controller('MainController', function($scope) {
     $scope.view = {};
     $scope.commentText = {};
+    $scope.sort = '-votes';
+    // $scope.sortReverse  = true;
     $scope.add = false;
     $scope.showAdd = function() {
-        if ($scope.add === true) {
-            $scope.add = false;
-        } else {
-            $scope.add = true;
-        }
+        $scope.add = !$scope.add
     }
-
     $scope.commentsShowing = false;
     $scope.showComments = function() {
         this.commentsShowing = !this.commentsShowing

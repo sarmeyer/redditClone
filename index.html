@@ -2,13 +2,15 @@
 <html lang="en" ng-app='reddit' ng-cloak>
     <head>
         <link rel="stylesheet" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <meta charset="utf-8">
         <title>Reddit Clone</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <script type="text/javascript" src='script.js'></script>
     </head>
     <body ng-controller="MainController">
@@ -27,13 +29,23 @@
                     <ul class="nav navbar-nav">
                         <li class="active">
                             <a ng-click='showAdd()'>
-                                + Submit Post</a>
+                                + Submit Post
+                                <span class="sr-only">(current)</span>
+                              </a>
                         </li>
+                        <!-- <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li><a ng-click="sortType = 'date'">Date</a></li>
+                            <li><a ng-click="sortType = 'votes'">Votes</a></li>
+                            <li><a ng-click="sortType = 'title'">Title</a></li>
+                          </ul>
+                        </li> -->
                     </ul>
                     <select class="select-location" ng-model='sort'>
                         <option value=''>Sort By</option>
                         <option value='date'>Date</option>
-                        <option value='votes'>Votes</option>
+                        <option value='-votes'>Votes</option>
                         <option value='title'>Title</option>
                     </select>
                     <form class="navbar-form navbar-left">
@@ -81,7 +93,7 @@
                 </form>
             </div>
         </nav>
-        <div class="row well" ng-repeat='post in posts | filter: searchKeyword | orderBy: sort'>
+        <div class="row well" ng-repeat='post in posts | filter: searchKeyword | orderBy:sort'>
             <div class="row image col-md-12">
                 <img class='postImage' src="{{post.imgurl}}" alt="You'll have to see this place in person!"/>
                 <div class="title col-md-8">
