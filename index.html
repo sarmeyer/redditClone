@@ -89,21 +89,22 @@
                 <img class='arrow' ng-click='post.votes=post.votes-1' src="arrows-1.png" alt="DownVote"/>
                 <span ng-class="post.votes >= 0 ? 'green' : 'red'">{{post.votes}}</span></h2>
             <h5>By {{post.author}}</h5>
-            <h4>{{post.description}}</h4>
+            <article>{{post.description}}</article>
+            <br>
             <p class='date'>
                 {{post.date | amCalendar}}
             </p>
-            <p ng-click='showComments()'>
+            <span ng-click='showComments()'>
                 <ng-pluralize count="{{post.comments.length}}" when="{'0': '{} Comments',
                      'one': '1 Comment',
                      'other': '{} Comments'}"></ng-pluralize>
-            </p>
+            </span>
             <div class="comments" ng-show='comments' ng-repeat='comment in post.comments'>
                 {{comment.commentAuthor}}
                 says
                 {{comment.thoughts}}
             </div>
-            <p ng-click='showCommentForm()'>Add Comment</p>
+            <span ng-click='showCommentForm()'>Add Comment</span>
             <div name='commentForm' ng-show='commentForm'>
                 <form ng-submit="submitComment(post)">
                     <label>Author</label>

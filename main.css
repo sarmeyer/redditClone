@@ -4,6 +4,7 @@ body {
 .postImage {
   width: 250px;
   height: 250px;
+  margin-top: 10px;
 }
 input.ng-invalid {
   border: 1px solid red;
@@ -26,6 +27,7 @@ input.ng-valid {
 .green {
   color: green;
 }
-h4 {
+article {
   width: 45vw;
+  font-size: 14px;
 }
