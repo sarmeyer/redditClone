@@ -13,21 +13,11 @@ input.ng-valid {
   border: 1px solid green;
 }
 .well {
-  display:flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-  width: 90vw;
-  height: 40vh;
-  margin-left: 75px;
+
 }
 .red {
   color: red;
 }
 .green {
   color: green;
-}
-article {
-  width: 45vw;
-  font-size: 14px;
 }

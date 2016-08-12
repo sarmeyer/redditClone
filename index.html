@@ -81,39 +81,57 @@
                 </form>
             </div>
         </nav>
-        <div class="userPosts well" ng-repeat='post in posts | filter: searchKeyword | orderBy: sort'>
-            <img class='postImage' src="{{post.imgurl}}" alt="You'll have to see this place in person!"/>
-            <h2>{{post.title}}
-                |
-                <img class='arrow' ng-click='post.votes=post.votes+1' src="arrows.png" alt="UpVote"/>
-                <img class='arrow' ng-click='post.votes=post.votes-1' src="arrows-1.png" alt="DownVote"/>
-                <span ng-class="post.votes >= 0 ? 'green' : 'red'">{{post.votes}}</span></h2>
-            <h5>By {{post.author}}</h5>
-            <article>{{post.description}}</article>
-            <br>
-            <p class='date'>
-                {{post.date | amCalendar}}
-            </p>
-            <span ng-click='showComments()'>
-                <ng-pluralize count="{{post.comments.length}}" when="{'0': '{} Comments',
-                     'one': '1 Comment',
-                     'other': '{} Comments'}"></ng-pluralize>
-            </span>
-            <div class="comments" ng-show='comments' ng-repeat='comment in post.comments'>
-                {{comment.commentAuthor}}
-                says
-                {{comment.thoughts}}
+        <div class="row well" ng-repeat='post in posts | filter: searchKeyword | orderBy: sort'>
+            <div class="row image col-md-12">
+                <img class='postImage' src="{{post.imgurl}}" alt="You'll have to see this place in person!"/>
+                <div class="title col-md-8">
+                    {{post.title}}
+                    |
+                    <img class='arrow' ng-click='post.votes=post.votes+1' src="arrows.png" alt="UpVote"/>
+                    <img class='arrow' ng-click='post.votes=post.votes-1' src="arrows-1.png" alt="DownVote"/>
+                    <span ng-class="post.votes >= 0 ? 'green' : 'red'">{{post.votes}}</span>
+                    <h5>By
+                        {{post.author}}</h5>
+                    <article>{{post.description}}</article>
+                </div>
             </div>
-            <span ng-click='showCommentForm()'>Add Comment</span>
-            <div name='commentForm' ng-show='commentForm'>
-                <form ng-submit="submitComment(post)">
-                    <label>Author</label>
-                    <input type="text" name="commentAuthor" ng-model='commentText.commentAuthor' placeholder="Your name">
-                    <label>Your thoughts</label>
-                    <input type="text" name="thoughts" ng-model='commentText.thoughts'>
-                    <input type="submit" value="Add Comment" class='btn btn-success'>
-                </form>
+            <div class="row dateComments col-md-12">
+                <div class="col-md-2">
+                    <div class='date'>
+                        {{post.date | amCalendar}}
+                    </div>
+                </div>
             </div>
+            <div class='row col-md-12' ng-click='showComments()'>
+                <div class="col-md-3">
+
+                    <ng-pluralize count="{{post.comments.length}}" when="{'0': '{} Comments',
+                  'one': '1 Comment',
+                  'other': '{} Comments'}"></ng-pluralize>
+                </div>
+            </div>
+            <div class='row col-md-12' ng-show='comments' ng-repeat='comment in post.comments'>
+                <div class="col-md-3">
+                    {{comment.commentAuthor}}
+                    says
+                    {{comment.thoughts}}
+                </div>
+            </div>
+            <div class='row col-md-12'>
+                <div class="col-md-3" ng-click='showCommentForm()'>
+                    Add Comment
+                </div>
+                <div class='row commentForm' name='commentForm' ng-show='commentForm'>
+                    <form ng-submit="submitComment(post)">
+                        <label>Author</label>
+                        <input type="text" name="commentAuthor" ng-model='commentText.commentAuthor' placeholder="Your name">
+                        <label>Your thoughts</label>
+                        <input type="text" name="thoughts" ng-model='commentText.thoughts'>
+                        <input type="submit" value="Add Comment" class='btn btn-success'>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>
