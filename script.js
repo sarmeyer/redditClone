@@ -12,21 +12,13 @@ app.controller('MainController', function($scope) {
         }
     }
 
-    $scope.comments = false;
+    $scope.commentsShowing = false;
     $scope.showComments = function() {
-        if ($scope.comments === true) {
-            $scope.comments = false;
-        } else {
-            $scope.comments = true;
-        }
+        this.commentsShowing = !this.commentsShowing
     }
-    $scope.commentForm = false;
-    $scope.showCommentForm = function() {
-        if ($scope.commentForm === true) {
-            $scope.commentForm = false;
-        } else {
-            $scope.commentForm = true
-        }
+    $scope.commentFormShowing = false;
+    $scope.showCommentForm = function(post) {
+        this.commentFormShowing = !this.commentFormShowing;
     }
     $scope.posts = [{
         title: 'Arches',
@@ -71,13 +63,13 @@ app.controller('MainController', function($scope) {
         comments: []
     }];
     $scope.submitPost = function() {
-      $scope.view.date = new Date();
-      $scope.view.votes = 0;
-      $scope.view.comments = [];
-      $scope.posts.push($scope.view);
+        $scope.view.date = new Date();
+        $scope.view.votes = 0;
+        $scope.view.comments = [];
+        $scope.posts.push($scope.view);
     };
 
     $scope.submitComment = function(postObj) {
-      postObj.comments.push($scope.commentText)
+        postObj.comments.push($scope.commentText);
     }
 });

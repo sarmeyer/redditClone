@@ -104,13 +104,12 @@
             </div>
             <div class='row col-md-12' ng-click='showComments()'>
                 <div class="col-md-3">
-
-                    <ng-pluralize count="{{post.comments.length}}" when="{'0': '{} Comments',
+                    <ng-pluralize count='post.comments.length' when="{'0': '{} Comments',
                   'one': '1 Comment',
                   'other': '{} Comments'}"></ng-pluralize>
                 </div>
             </div>
-            <div class='row col-md-12' ng-show='comments' ng-repeat='comment in post.comments'>
+            <div class='row col-md-12' ng-show='commentsShowing' ng-repeat='comment in post.comments'>
                 <div class="col-md-3">
                     {{comment.commentAuthor}}
                     says
@@ -121,8 +120,8 @@
                 <div class="col-md-3" ng-click='showCommentForm()'>
                     Add Comment
                 </div>
-                <div class='row commentForm' name='commentForm' ng-show='commentForm'>
-                    <form ng-submit="submitComment(post)">
+                <div class='row commentForm' name='commentForm' ng-show='commentFormShowing'>
+                    <form name='newComment' ng-submit="submitComment(post)">
                         <label>Author</label>
                         <input type="text" name="commentAuthor" ng-model='commentText.commentAuthor' placeholder="Your name">
                         <label>Your thoughts</label>
