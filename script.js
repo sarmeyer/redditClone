@@ -1,5 +1,9 @@
 var app = angular.module("reddit", ['angularMoment', 'ngAnimate']);
 
+$(document).ready(function(){
+  $('.dropdown-toggle').dropdown()
+})
+
 app.controller('MainController', function($scope) {
     $scope.view = {};
     $scope.commentText = {};
@@ -63,6 +67,7 @@ app.controller('MainController', function($scope) {
         $scope.view.votes = 0;
         $scope.view.comments = [];
         $scope.posts.push($scope.view);
+        $scope.add = false;
     };
 
     $scope.submitComment = function(postObj) {
