@@ -3,9 +3,9 @@
     <head>
         <link rel="stylesheet" href="main.css">
         <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Raleway">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Raleway">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
@@ -88,7 +88,7 @@
                 </form>
             </div>
         </nav>
-        <div class="posts row well well-sm" ng-repeat='post in posts | filter: searchKeyword | orderBy:sort'>
+        <div class="posts row well well-sm" ng-repeat='post in posts | filter: searchKeyword | orderBy:sort' ng-style="{top: ((item.order * 40) + 'px')}">
             <div class="row image col-md-12">
                 <img class='postImage' src="{{post.imgurl}}" alt="You'll have to see this place in person!"/>
                 <div class="title col-md-6">
@@ -119,17 +119,18 @@
               </div>
                 <div class='row commentForm' name='commentForm' ng-show='commentFormShowing'>
                   <div class="col-md-12">
-                    <form name='newComment' ng-submit="submitComment(post)">
+                    <form class='newComment' name='newComment' ng-submit="submitComment(post)">
                         <label>Author</label>
                         <input type="text" name="commentAuthor" ng-model='commentText.commentAuthor' placeholder="Your name">
+                        <br>
                         <label>Your thoughts</label>
-                        <input type="text" name="thoughts" ng-model='commentText.thoughts'>
+                        <input class='thoughts' type="text" name="thoughts" ng-model='commentText.thoughts'>
                         <input type="submit" value="Add Comment" class='btn btn-success'>
                     </form>
                   </div>
                   </div>
                 <div class='row commentsShowing' ng-show='commentsShowing' ng-repeat='comment in post.comments'>
-                        From {{comment.commentAuthor}}: {{comment.thoughts}}
+                        <em>From {{comment.commentAuthor}}</em>: {{comment.thoughts}}
                 </div>
             </div>
           </div>

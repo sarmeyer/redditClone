@@ -34,6 +34,14 @@ article {
 .commentsShowing {
   font-size: .8em;
 }
+.newComment {
+  margin-top: 25px;
+  font-size: .8em;
+}
+.thoughts {
+  width: 250px;
+  height: 90px;
+}
 .arrowup:hover {
     border: solid 2px green;
     border-radius: 50%;
@@ -70,17 +78,17 @@ article {
 .ng-leave.ng-leave-active {
   opacity:0;
 }
-/*.ng-hide-add {
-  transition:0.5s linear all;
+.ng-hide-add {
+  transition:0.5s ease all;
   opacity:1;
 }
 .ng-hide {
-  transition:0.5s linear all;
+  transition:0.5s ease all;
   opacity:0;
+}
+.ng-hide-add-active {
+  opacity: 1;
 }
 .ng-hide-remove-active {
   opacity: 0;
 }
-.ng-hide-add-active {
-  opacity: 1;
-}*/
