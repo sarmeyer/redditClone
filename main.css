@@ -1,6 +1,9 @@
 body {
   font-family: 'Raleway', sans-serif;
 }
+.navbar {
+  /*background-color: #b3fff3;*/
+}
 .row {
   padding-left: 325px;
 }
@@ -33,6 +36,8 @@ article {
 }
 .commentsShowing {
   font-size: .8em;
+  margin-left: 46%;
+  margin-top: 18px;
 }
 .newComment {
   margin-top: 25px;
@@ -42,13 +47,16 @@ article {
   width: 250px;
   height: 90px;
 }
-.arrowup:hover {
-    border: solid 2px green;
-    border-radius: 50%;
+#newPost {
+  margin-left: 8%;
+  padding-bottom: 15px;
+  width: 450px;
 }
-.arrowdown:hover {
-    border: solid 2px red;
-    border-radius: 50%;
+#description{
+  height: 120px;
+}
+#arrow {
+  color: black;
 }
 .commentShow:hover {
   color: purple;
